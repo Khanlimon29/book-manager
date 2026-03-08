@@ -1,54 +1,57 @@
 
 <template>
- <form @submit.prevent="handleSubmit" class="add-form">
- <h2>Добавить новую книгу</h2>
+  <form @submit.prevent="handleSubmit" class="add-form">
+    <h2>Добавить новую книгу</h2>
 
- <div class="form-group">
- <input
- v-model="formData.title"
- type="text"
- placeholder="Название книги"
- required
- />
- </div>
+    <div class="form-group">
+      <input
+        v-model="formData.title"
+        type="text"
+        placeholder="Название книги"
+        required
+      />
+    </div>
 
- <div class="form-group">
- <input
- v-model="formData.author"
- type="text"
- placeholder="Автор"
- required
- />
- </div>
+    <div class="form-group">
+      <input
+        v-model="formData.author"
+        type="text"
+        placeholder="Автор"
+        required
+      />
+    </div>
 
- <div class="form-group">
- <select v-model="formData.genre" required>
- <option value="">Выберите жанр</option>
- <option value="Роман">Роман</option>
- <option value="Фантастика">Фантастика</option>
- <option value="Детектив">Детектив</option>
- <option value="Научная">Научная</option>
- <option value="Поэзия">Поэзия</option>
- </select>
- </div>
+    <div class="form-group">
+      <select v-model="formData.genre" required>
+        <option value="">Выберите жанр</option>
+        <option value="Роман">Роман</option>
+        <option value="Фантастика">Фантастика</option>
+        <option value="Детектив">Детектив</option>
+        <option value="Научная">Научная</option>
+        <option value="Поэзия">Поэзия</option>
+      </select>
+    </div>
 
- <button type="submit" class="btn-submit">Добавить книгу</button>
- </form>
+    <button type="submit" class="btn-submit">Добавить книгу</button>
+  </form>
 </template>
 <script setup>
 import { reactive } from 'vue'
+
 const emit = defineEmits(['add-book'])
+
 const formData = reactive({
- title: '',
- author: '',
- genre: ''
+  title: '',
+  author: '',
+  genre: ''
 })
+
 const handleSubmit = () => {
- emit('add-book', { ...formData })
- // Очистка формы
- formData.title = ''
- formData.author = ''
- formData.genre = ''
+  emit('add-book', { ...formData })
+  // Очистка формы
+  formData.title = ''
+  formData.author = ''
+  formData.genre = ''
 }
 </script>
 <style scoped>
